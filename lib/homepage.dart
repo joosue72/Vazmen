@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage>
             selectedItem = currIndex;
           });
         },
-        items: [
+        items: [ 
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
             icon: Icon(Icons.home),
