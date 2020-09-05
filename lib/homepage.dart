@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage>
       body: children[selectedItem],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF1B1B1B),
-        selectedItemColor: Color(0xFFFD4F99),
+        selectedItemColor: Color(0xFFB71C1C),
         iconSize: 27.0,
         currentIndex: selectedItem,
         unselectedLabelStyle: TextStyle(color: Color(0xFF1B1B1B)),
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage>
               width: 5.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFFFD4F99) 
+                color: Color(0xFFB71C1C) 
               ),
             )
           ),
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage>
               width: 5.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFFFD4F99) 
+                color: Color(0xFFB71C1C) 
               ),
             )
           ),
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage>
               width: 5.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFFFD4F99) 
+                color: Color(0xFFB71C1C) 
               ),
             )
           ),
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage>
               width: 5.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xFFFD4F99) 
+                color: Color(0xFFB71C1C) 
               ),
             )
           )
