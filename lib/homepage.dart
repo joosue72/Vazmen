@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vazmen/dashboard.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+bool _debugLocked = false;
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
@@ -18,7 +21,11 @@ class _HomePageState extends State<HomePage>
   ];
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
+    assert(!_debugLocked);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Color(0xFF202020),
       body: children[selectedItem],
       bottomNavigationBar: BottomNavigationBar(
