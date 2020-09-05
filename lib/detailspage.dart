@@ -187,7 +187,7 @@ import 'package:google_fonts/google_fonts.dart';
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: <Widget>[
-                        _buildListItem('assets/japan.jpg', 'Takashi castle',
+                        _buildListItem('assets/ventas.jpg', 'Takashi castle',
                             '\$200 - \$400'),
                         _buildListItem('assets/kyoto.jpg', 'Heaven\'s gate',
                             '\$50 - \$150'),
