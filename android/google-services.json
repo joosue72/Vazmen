@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1087162593766",
+    "firebase_url": "https://vazmen-a0022.firebaseio.com",
+    "project_id": "vazmen-a0022",
+    "storage_bucket": "vazmen-a0022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087162593766:android:7b333df36081ce073b2627",
+        "android_client_info": {
+          "package_name": "com.example.vazmen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087162593766-u2iec6vno5hlpmbv9u1m2hbbvlr99f24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW2vXf-1BuvwRGry7F1YEKFTbqe9h_B1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087162593766-u2iec6vno5hlpmbv9u1m2hbbvlr99f24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
