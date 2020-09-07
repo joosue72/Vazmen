@@ -1,4 +1,4 @@
-import 'dart:async';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,13 +31,17 @@ class _NuevoProductoState extends State<NuevoProducto> {
       
       keyboardType: TextInputType.number,
       controller: _textFieldController,
-     
-      cursorColor: Colors.grey,
+      style: TextStyle(
+        color: Colors.white,
+    ),
+      cursorColor: Colors.white,
       decoration: InputDecoration(
-         prefixIcon: Icon(Icons.storage, color: Colors.white),
+        
+         
+         prefixIcon: Icon(Icons.storage, color: Color(0xFFB71C1C)),
         labelText: "Cantidad",
         labelStyle: TextStyle(color: Colors.white) ,
-        
+        hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
           color: Colors.white,
@@ -63,10 +67,12 @@ class _NuevoProductoState extends State<NuevoProducto> {
       
       keyboardType: TextInputType.text,
       controller: _textFieldCalidad,
-     
+     style: TextStyle(
+        color: Colors.white,
+    ),
       cursorColor: Colors.grey,
       decoration: InputDecoration(
-         prefixIcon: Icon(Icons.add_box, color: Colors.white),
+         prefixIcon: Icon(Icons.add_box, color: Color(0xFFB71C1C)),
         labelText: "Calidad",
         labelStyle: TextStyle(color: Colors.white) ,
         
@@ -95,10 +101,12 @@ TextFormField buildTextFormFieldVariedad() {
       
       keyboardType: TextInputType.text,
       controller: _textFieldVariedad,
-     
+     style: TextStyle(
+        color: Colors.white,
+    ),
       cursorColor: Colors.white,
       decoration: InputDecoration(
-         prefixIcon: Icon(Icons.add_circle, color: Colors.white),
+         prefixIcon: Icon(Icons.add_circle, color: Color(0xFFB71C1C)),
         labelText: "Variedad",
         labelStyle: TextStyle(color: Colors.white) ,
         
@@ -165,11 +173,40 @@ TextFormField buildTextFormFieldVariedad() {
   );
                 } else {
                   stopLoading();
-                  
+showGeneralDialog(
+      barrierLabel: "Label",
+      
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 300,
+            child: SizedBox.expand(child: Image(image: AssetImage('assets/error.gif'))),
+            
+            margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: Color(0xFF1B1B1B),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },
+    );
                 }
               },
               child: Text(
-                "Registrar",
+                "Agregar",
                 style: TextStyle(
                     color: Color(0xFF202020),
                     fontSize: 18,
@@ -185,6 +222,7 @@ TextFormField buildTextFormFieldVariedad() {
               borderRadius: 5.0,
               color: Colors.white
             ),
+            
             
       ]
       ),

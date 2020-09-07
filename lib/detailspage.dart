@@ -125,67 +125,13 @@ String fecha = DateFormat('kk:mm').format(now);
                     )
                   ),
                   SizedBox(height: 10.0),
-                  Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: Container(
-                          height: 200.0,
-                          width: 325.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: AssetImage('assets/vazmen2.jpg'),
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken)
-                            )
-                          ),
+                  Text(hora,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          textStyle: TextStyle(color: Colors.white),
                         )
-                      ),
-                      Positioned(
-                        top: 125.0,
-                        left: 10.0,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width - 60.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(hora,
-                                  style: GoogleFonts.montserrat(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        textStyle:
-                                            TextStyle(color: Colors.white)
-                                  )
-                                  ),
-                                  Text(
-                                    fecha,
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 14.0,
-                                        textStyle:
-                                            TextStyle(color: Colors.white)),
-                                  )
-                                ],
-                              ),
-                              Container(
-                                height: 40.0,
-                                width: 40.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7.0),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Icon(Icons.arrow_forward_ios, color: Color(0xFFFD4F99), size: 14.0),
-                                ),
-                              )
-                            ],
-                          )
-                        )
-                      )
-                    ],
-                  ),
+                        ),
                   SizedBox(height: 20.0),
                   Container(
                     width: MediaQuery.of(context).size.width - 15.0,
@@ -217,8 +163,7 @@ String fecha = DateFormat('kk:mm').format(now);
               }
             },
           ),
-            _buildListItem1('assets/inve.jpg', '',
-                            ' ')
+            
 
           
                       ],
@@ -307,6 +252,27 @@ String fecha = DateFormat('kk:mm').format(now);
               
             )
             
+          ),
+          Positioned(
+            top: 120.0,
+            right: 15.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("${doc.data()['Calidad']}",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                  textStyle: TextStyle(
+                    color: Colors.white
+                  )
+                )
+                ),
+                
+              ],
+              
+            )
+            
           )
           
         ]
@@ -317,73 +283,7 @@ String fecha = DateFormat('kk:mm').format(now);
     
   }
 
-   _buildListItem1(String imgPath, String placeName, String price) {
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: Stack(
-        children: [
-          Container(
-            height: 175.0,
-            width: 150.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
-              image: DecorationImage(
-                image: AssetImage(imgPath),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken)
-              )
-            )
-          ),
-          Positioned(
-            top: 15.0,
-            right: 15.0,
-            child: Container(
-              height: 25.0,
-              width: 25.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.bookmark_border,
-                  color: Colors.black,
-                  size: 14.0,
-                )
-              )
-            )
-          ),
-          Positioned(
-            top: 125.0,
-            left: 15.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(placeName,
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                  textStyle: TextStyle(
-                    color: Colors.white
-                  )
-                )
-                ),
-                Text(price,
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14.0,
-                  textStyle: TextStyle(
-                    color: Colors.white
-                  )
-                )
-                )
-              ],
-            )
-          )
-        ]
-      )
-    );
-  }
+  
   
   
  }

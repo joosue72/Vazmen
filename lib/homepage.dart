@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vazmen/dashboard.dart';
 import 'package:flutter/services.dart';
+import 'package:vazmen/splash.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 bool _debugLocked = false;
+
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
@@ -22,13 +24,18 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
+ 
 
+  
     assert(!_debugLocked);
     return Scaffold(
+      
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color(0xFF202020),
       body: children[selectedItem],
+      
       bottomNavigationBar: BottomNavigationBar(
+        
         backgroundColor: Color(0xFF1B1B1B),
         selectedItemColor: Color(0xFFB71C1C),
         iconSize: 27.0,
@@ -38,8 +45,21 @@ class _HomePageState extends State<HomePage>
         onTap: (currIndex) {
           setState(() {
             selectedItem = currIndex;
+            switch(currIndex) {
+    case 0:
+     
+      break;
+
+    case 3:
+       Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ScrollPage()),
+  );
+      break;
+  }
           });
         },
+        
         items: [ 
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
@@ -55,7 +75,7 @@ class _HomePageState extends State<HomePage>
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.copyright),
             title: Container(
               height: 5.0,
               width: 5.0,
@@ -67,7 +87,7 @@ class _HomePageState extends State<HomePage>
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
-            icon: Icon(Icons.camera_alt),
+            icon: Icon(Icons.device_unknown),
             title: Container(
               height: 5.0,
               width: 5.0,
@@ -79,7 +99,7 @@ class _HomePageState extends State<HomePage>
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
-            icon: Icon(Icons.person_outline),
+            icon: Icon(Icons.exit_to_app),
             title: Container(
               height: 5.0,
               width: 5.0,
@@ -87,7 +107,9 @@ class _HomePageState extends State<HomePage>
                 shape: BoxShape.circle,
                 color: Color(0xFFB71C1C) 
               ),
+              
             )
+             
           )
         ],
       ),
