@@ -22,7 +22,16 @@ final db = FirebaseFirestore.instance;
   String calidad;
   dynamic  cantidad;
   String variedad;
-
+  var  _currentSelectedValue;
+ var _currencies = [
+    "1ra",
+    "2nda",
+    "3ra",
+    "4ta",
+    "Cambray",
+    "Monos",
+    "Gordas"
+  ];
 class _NuevoProductoState extends State<NuevoProducto> {
 
   TextFormField buildTextFormFieldCantidad() {
@@ -38,7 +47,7 @@ class _NuevoProductoState extends State<NuevoProducto> {
       decoration: InputDecoration(
         
          
-         prefixIcon: Icon(Icons.storage, color: Color(0xFFB71C1C)),
+         prefixIcon: Icon(Icons.storage, color: Colors.white),
         labelText: "Cantidad",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
@@ -70,7 +79,7 @@ class _NuevoProductoState extends State<NuevoProducto> {
      style: TextStyle(
         color: Colors.white,
     ),
-      cursorColor: Colors.grey,
+      cursorColor: Colors.white,
       decoration: InputDecoration(
          prefixIcon: Icon(Icons.add_box, color: Color(0xFFB71C1C)),
         labelText: "Calidad",
@@ -106,10 +115,10 @@ TextFormField buildTextFormFieldVariedad() {
     ),
       cursorColor: Colors.white,
       decoration: InputDecoration(
-         prefixIcon: Icon(Icons.add_circle, color: Color(0xFFB71C1C)),
+         prefixIcon: Icon(Icons.add_circle, color: Colors.white),
         labelText: "Variedad",
         labelStyle: TextStyle(color: Colors.white) ,
-        
+        fillColor: Colors.white,
         border: UnderlineInputBorder(
             borderSide: BorderSide(
           color: Colors.white,
@@ -137,24 +146,94 @@ TextFormField buildTextFormFieldVariedad() {
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color(0xFF202020),
 
-    body: ListView(
-        padding: EdgeInsets.all(8),
+    body: Stack(
+        
         children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/inve.jpg"), fit: BoxFit.cover)
+              
+            ),
+          ),
+           Positioned(
+            top: 100.0,
+            child: Padding(
+              padding: EdgeInsets.all(0.0),
+              child: Column(
+                children: <Widget>[
+          
+          Container(
+            color: Color(0xFF000000).withOpacity(0.5),
+            height: 500.0,
+                    width: MediaQuery.of(context).size.width,
+          child: ListView(
+                      padding: EdgeInsets.all(8),
+                      scrollDirection: Axis.vertical,
+                      children: <Widget>[
+                        SizedBox(height: 20.0,),
+                        Form(child: buildTextFormFieldVariedad(),),
+                        SizedBox(height: 20.0,),
+                      
 
-          SizedBox(height: 50.0),
-          Form(
-            child: buildTextFormFieldCalidad(),
-          ),
-          SizedBox(height: 30.0,),
-          Form(
-            child: buildTextFormFieldVariedad(),
-          ),
-          SizedBox(height: 30.0,),
-          Form(
-            child: buildTextFormFieldCantidad(),
-          ),
-          SizedBox(height: 50.0,),
-           ArgonButton(
+ FormField<String>(
+
+    
+
+          builder: (FormFieldState<String> state) {
+           
+            return InputDecorator(
+              
+              decoration: InputDecoration(
+
+                  labelStyle: TextStyle(color: Colors.white),
+                  errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                  hintText: 'Seleccione calidad',
+                  hintStyle: TextStyle(color: Colors.black, backgroundColor: Colors.white),
+                  prefixStyle: TextStyle(color: Colors.white),
+                  
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Colors.white),)),
+              isEmpty: _currentSelectedValue == '',
+              
+              child: DropdownButtonHideUnderline(
+                
+                child: DropdownButton<String>(
+                  dropdownColor: Colors.black,
+                  icon: Icon(Icons.arrow_drop_down_circle, color: Colors.white),
+                  focusColor: Colors.white,
+                  value: _currentSelectedValue,
+                  isDense: true,
+                  onChanged: (String newValue) {
+                    setState(() {
+                      _currentSelectedValue = newValue;
+                      state.didChange(newValue);
+                    });
+                  },
+                  items: _currencies.map((String value) {
+                    
+                    return DropdownMenuItem<String>(
+                      
+                      value: value,
+                      child: Text(value,
+                      style: TextStyle(color: Colors.white),
+                      
+                      ),
+                      
+                    );
+                  }).toList(),
+                ),
+              ),
+            );
+          },
+        ),
+                        SizedBox(height: 20.0,),
+                        Form(child: buildTextFormFieldCantidad(),),
+                        SizedBox(height: 50.0,),
+
+
+                        ArgonButton(
               height: 50,
               
               roundLoadingShape: true,
@@ -162,47 +241,29 @@ TextFormField buildTextFormFieldVariedad() {
               onTap: (startLoading, stopLoading, btnState) {
                 if (btnState == ButtonState.Idle) {
                   startLoading();
-                  variedad = _textFieldVariedad.text.toString();
-                               cantidad = double.parse(_textFieldController.text);
-                               calidad = _textFieldCalidad.text.toString();
-                  FirebaseFirestore.instance.collection('Inventario').doc("$variedad").set({'Variedad': '$variedad', 'Cantidad': cantidad, 'Calidad': '$calidad'});
-                  
-                  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => HomePage()),
+                  if( _textFieldVariedad.text.isEmpty || _textFieldController.text.isEmpty)
+                  {
+                    incorrecto();
+                    Future.delayed(
+      
+    Duration(seconds: 2),
+    (){
+      Navigator.of(context).pop();
+    },
   );
+                    
+                    stopLoading();
+                  }
+                  else
+                  {
+                    correcto();
+                    stopLoading();
+                  }
+
+                  
                 } else {
                   stopLoading();
-showGeneralDialog(
-      barrierLabel: "Label",
-      
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: Duration(milliseconds: 700),
-      context: context,
-      pageBuilder: (context, anim1, anim2) {
-        return Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 300,
-            child: SizedBox.expand(child: Image(image: AssetImage('assets/error.gif'))),
-            
-            margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
-            decoration: BoxDecoration(
-              color: Color(0xFF1B1B1B),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            
-          ),
-        );
-      },
-      transitionBuilder: (context, anim1, anim2, child) {
-        return SlideTransition(
-          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
-          child: child,
-        );
-      },
-    );
+
                 }
               },
               child: Text(
@@ -222,7 +283,17 @@ showGeneralDialog(
               borderRadius: 5.0,
               color: Colors.white
             ),
-            
+
+
+
+          ],
+          ) 
+          ),
+          ],
+              )
+              
+            )
+           )
             
       ]
       ),
@@ -262,6 +333,89 @@ showGeneralDialog(
       ],),
     ),
   );
+}
+
+void correcto()
+{
+  showGeneralDialog(
+      barrierLabel: "Label",
+      
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 300,
+            child: SizedBox.expand(child: Image(image: AssetImage('assets/correcto.gif'))),
+            
+            margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: Color(0xFF1B1B1B),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },
+    );
+                  Future.delayed(
+                  
+    Duration(seconds: 2),
+    (){
+      variedad = _textFieldVariedad.text.toString();
+                               cantidad = double.parse(_textFieldController.text);
+                               calidad = _textFieldCalidad.text.toString();
+                  FirebaseFirestore.instance.collection('Inventario').doc("$variedad").set({'Variedad': '$variedad', 'Cantidad': cantidad, 'Calidad': '$_currentSelectedValue'});
+                    _textFieldCalidad.text="";
+  _textFieldVariedad.text="";
+  _textFieldController.text="";
+                  
+      Navigator.of(context).pop();
+    },
+  );
+}
+
+void incorrecto()
+{
+showGeneralDialog(
+      barrierLabel: "Label",
+      
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      context: context,
+      pageBuilder: (context, anim1, anim2) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 300,
+            child: SizedBox.expand(child: Image(image: AssetImage('assets/error.gif'))),
+            
+            margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: Color(0xFF1B1B1B),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },
+    );
 }
 
   
