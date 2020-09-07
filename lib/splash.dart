@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'Animation/FadeAnimation.dart';
+import 'dashboard.dart';
+import 'homepage.dart';
 
 class ScrollPage extends StatelessWidget {
   @override
@@ -26,7 +28,7 @@ class ScrollPage extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFF009688),
+      backgroundColor: Color.fromRGBO(108, 192, 218, 1),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +44,7 @@ class ScrollPage extends StatelessWidget {
                     child: FadeAnimation(1.3, Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/bsl.png'),
+                          image: AssetImage('assets/background-2.png'),
                           fit: BoxFit.fill
                         )
                       ),
@@ -79,7 +81,7 @@ class ScrollPage extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Color.fromRGBO(0, 0, 0, 100),
-                          blurRadius: 20,
+                          blurRadius: 30,
                           offset: Offset(0, 10),
                         )
                       ]
@@ -100,14 +102,14 @@ class ScrollPage extends StatelessWidget {
                               
                               border: InputBorder.none,
                               hintText: "Contraseña",
-                              hintStyle: TextStyle(color: Colors.grey)
+                              hintStyle: TextStyle(color: Colors.black)
                             ),
                           ),
                         )
                       ],
                     ),
                   )),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 50,),
                   
                   FadeAnimation(1.9, Container(
                     height: 50,
@@ -121,7 +123,25 @@ class ScrollPage extends StatelessWidget {
                               color: Colors.black,
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
-                            //    validarLogin(context);
+
+                               Route route = MaterialPageRoute(builder: (bc) => HomePage());
+                                                Navigator.of(context).push(route);
+                             //  Navigator.push(context,PageRouteBuilder(
+                              //   transitionDuration: Duration(seconds: 1),
+                              //transitionsBuilder: (BuildContext context, Animation<double> animation,Animation<double> secAnimation, Widget child)
+                              //   {
+                                //   animation = CurvedAnimation(parent: animation,curve: Curves.elasticInOut);
+                                  //  return ScaleTransition(
+                                    //  alignment: Alignment.center,
+                                      //scale: animation,
+                                     // child: child,
+                                   // );
+                                // },
+                                 //pageBuilder: (BuildContext context, Animation<double> animation,Animation<double> secAnimation)
+                              // {
+                               //  return ProductList();
+                              // }
+                              // ));
                              },
                       )
 
@@ -164,6 +184,13 @@ class ScrollPage extends StatelessWidget {
 
 
   }
+
+  void validarLogin(BuildContext context)
+{
+
+Route route = MaterialPageRoute(builder: (bc) => HomePage());
+                                                Navigator.of(context).push(route);
+}
 
   Widget _imagenFondo(){
 
@@ -225,3 +252,91 @@ class ScrollPage extends StatelessWidget {
   }
 
 }
+
+
+
+class ProductList extends StatelessWidget {
+   var selectedItem = 0;
+
+  List children = [
+    DashboardPage(),
+    DashboardPage(),
+    DashboardPage(),
+    DashboardPage()
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
+    assert(!_debugLocked);
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      backgroundColor: Color(0xFF202020),
+      body: children[selectedItem],
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF1B1B1B),
+        selectedItemColor: Color(0xFFB71C1C),
+        iconSize: 27.0,
+        currentIndex: selectedItem,
+        unselectedLabelStyle: TextStyle(color: Color(0xFF1B1B1B)),
+        unselectedItemColor: Color(0xFF888888),
+        onTap: (currIndex) {
+        
+        },
+        items: [ 
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFF1B1B1B),
+            icon: Icon(Icons.home),
+            title: Container(
+              height: 5.0,
+              width: 5.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFB71C1C) 
+              ),
+            )
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFF1B1B1B),
+            icon: Icon(Icons.search),
+            title: Container(
+              height: 5.0,
+              width: 5.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFB71C1C) 
+              ),
+            )
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFF1B1B1B),
+            icon: Icon(Icons.camera_alt),
+            title: Container(
+              height: 5.0,
+              width: 5.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFB71C1C) 
+              ),
+            )
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFF1B1B1B),
+            icon: Icon(Icons.person_outline),
+            title: Container(
+              height: 5.0,
+              width: 5.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFB71C1C) 
+              ),
+            )
+          )
+        ],
+      ),
+    );
+  }
+}
+
+bool _debugLocked = false;
