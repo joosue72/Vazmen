@@ -1,7 +1,10 @@
 import 'dart:ui';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vazmen/NuevoProducto.dart';
+import 'package:vazmen/homepage.dart';
 
 
 
@@ -17,12 +20,22 @@ import 'package:google_fonts/google_fonts.dart';
    _DetailsPageState createState() => _DetailsPageState();
  }
  
+final db = FirebaseFirestore.instance;
+String nombre;
+  String documentId;
+  DateTime now = DateTime.now();
+String hora = DateFormat('yyyy-MM-dd').format(now);
+String fecha = DateFormat('kk:mm').format(now);
+
  class _DetailsPageState extends State<DetailsPage> {
 
    
 
    @override
    Widget build(BuildContext context) {
+
+
+
      return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -51,11 +64,20 @@ import 'package:google_fonts/google_fonts.dart';
                   width: 40.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(7.0),
-                    color:Color(0xFFFD4F99)
+                    color:Color(0xFF353535)
                   ),
                   child: Center(
-                    child: Icon(Icons.filter_list, color: Colors.white)
+                    child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: ()
+                    {
+                         Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => HomePage()),
+    
+  );
+                    }),
+                    
                   )
+                  
                 ),
                 Text(widget.title.toString().toUpperCase(),
                 style: GoogleFonts.montserrat(
@@ -88,7 +110,7 @@ import 'package:google_fonts/google_fonts.dart';
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('Trending Attractions',
+                        Text('VazMen Central De Abastos',
                         style: GoogleFonts.montserrat(
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
@@ -103,120 +125,81 @@ import 'package:google_fonts/google_fonts.dart';
                     )
                   ),
                   SizedBox(height: 10.0),
-                  Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        child: Container(
-                          height: 200.0,
-                          width: 325.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: AssetImage('assets/kyoto.jpg'),
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken)
-                            )
-                          ),
+                  Text(hora,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          textStyle: TextStyle(color: Colors.white),
                         )
-                      ),
-                      Positioned(
-                        top: 125.0,
-                        left: 10.0,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width - 60.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text('Kyoto tour',
-                                  style: GoogleFonts.montserrat(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        textStyle:
-                                            TextStyle(color: Colors.white)
-                                  )
-                                  ),
-                                  Text(
-                                    'Three day tour around Kyoto',
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 14.0,
-                                        textStyle:
-                                            TextStyle(color: Colors.white)),
-                                  )
-                                ],
-                              ),
-                              Container(
-                                height: 40.0,
-                                width: 40.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7.0),
-                                    color: Colors.white),
-                                child: Center(
-                                  child: Icon(Icons.arrow_forward_ios, color: Color(0xFFFD4F99), size: 14.0),
-                                ),
-                              )
-                            ],
-                          )
-                        )
-                      )
-                    ],
-                  ),
+                        ),
                   SizedBox(height: 20.0),
                   Container(
                     width: MediaQuery.of(context).size.width - 15.0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('Weekly Highlights',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                          textStyle: TextStyle(color: Colors.white),
-                        )
-                        )
+                        
+          SizedBox(width: 20,),
                       ],
                     )
                   ),
                   SizedBox(height: 15.0),
+                  
                   Container(
-                    height: 200.0,
+                    height: 500.0,
                     width: MediaQuery.of(context).size.width,
                     child: ListView(
-                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.all(8),
+                      scrollDirection: Axis.vertical,
                       children: <Widget>[
-                        _buildListItem('assets/ventas.jpg', 'Takashi castle',
-                            '\$200 - \$400'),
-                        _buildListItem('assets/kyoto.jpg', 'Heaven\'s gate',
-                            '\$50 - \$150'),
-                        _buildListItem('assets/canada.jpg', 'Miay gate',
-                            '\$300 - \$350')
+                        StreamBuilder<QuerySnapshot>(
+            stream: db.collection('Inventario').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(children: snapshot.data.docs.map<Widget>((doc) => _buildListItem(doc)).toList());
+                
+              } else {
+                return SizedBox();
+              }
+            },
+          ),
+            
+
+          
                       ],
                     )
+                    
                   )
+                  
                 ],
               )
+              
             )
           )
         ],
       ),
+      
+     floatingActionButton: FloatingActionButton(child: Icon(Icons.add), backgroundColor: Color(0xFF202020),
+     onPressed: (){
+        Route route = MaterialPageRoute(builder: (bc) => NuevoProducto());
+                               Navigator.of(context).push(route);
+     },
+     ),
     );
    }
 
-   _buildListItem(String imgPath, String placeName, String price) {
+   _buildListItem(DocumentSnapshot doc) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Stack(
         children: [
           Container(
             height: 175.0,
-            width: 150.0,
+            width: 250.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7.0),
               image: DecorationImage(
-                image: AssetImage(imgPath),
+                image: AssetImage('assets/papa.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken)
               )
@@ -234,20 +217,20 @@ import 'package:google_fonts/google_fonts.dart';
               ),
               child: Center(
                 child: Icon(
-                  Icons.bookmark_border,
-                  color: Color(0xFFFD4F99),
+                  Icons.shopping_cart,
+                  color: Color(0xFFB71C1C),
                   size: 14.0,
                 )
               )
             )
           ),
           Positioned(
-            top: 125.0,
+            top: 120.0,
             left: 15.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(placeName,
+                Text("${doc.data()['Variedad']}",
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w500,
                   fontSize: 15.0,
@@ -256,7 +239,7 @@ import 'package:google_fonts/google_fonts.dart';
                   )
                 )
                 ),
-                Text(price,
+                Text("${doc.data()['Cantidad']} kg",
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w400,
                   fontSize: 14.0,
@@ -266,10 +249,41 @@ import 'package:google_fonts/google_fonts.dart';
                 )
                 )
               ],
+              
             )
+            
+          ),
+          Positioned(
+            top: 120.0,
+            right: 15.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("${doc.data()['Calidad']}",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                  textStyle: TextStyle(
+                    color: Colors.white
+                  )
+                )
+                ),
+                
+              ],
+              
+            )
+            
           )
+          
         ]
+        
       )
+      
     );
+    
   }
+
+  
+  
+  
  }

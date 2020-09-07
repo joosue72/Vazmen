@@ -24,7 +24,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 
                 Text('MENU',
                     style: GoogleFonts.montserrat(
-                        fontSize: 16.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.w400,
                         textStyle: TextStyle(color: Colors.white))),
                 Container(

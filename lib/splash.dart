@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vazmen/homepage.dart';
 
 import 'Animation/FadeAnimation.dart';
 import 'dashboard.dart';
@@ -123,6 +124,7 @@ class ScrollPage extends StatelessWidget {
                               color: Colors.black,
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
+<<<<<<< HEAD
 
                                Route route = MaterialPageRoute(builder: (bc) => HomePage());
                                                 Navigator.of(context).push(route);
@@ -142,6 +144,10 @@ class ScrollPage extends StatelessWidget {
                                //  return ProductList();
                               // }
                               // ));
+=======
+                              Route route = MaterialPageRoute(builder: (bc) => HomePage());
+                                                Navigator.of(context).push(route);
+>>>>>>> e498bed25563e5236f48bfc1626f218dd7458b2f
                              },
                       )
 
@@ -197,7 +203,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
     return Container(
       width: double.infinity,
       height: double.infinity,
-    child: Image(image: AssetImage('assets/scroll-1.png'),
+    child: Image(image: AssetImage('assets/1100.png'),
     fit: BoxFit.cover,
     ),
     );
