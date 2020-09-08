@@ -3,6 +3,7 @@ import 'package:vazmen/copyrigth.dart';
 import 'package:vazmen/dashboard.dart';
 import 'package:flutter/services.dart';
 import 'package:vazmen/splash.dart';
+import 'package:vazmen/support.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -53,7 +54,12 @@ class _HomePageState extends State<HomePage>
     MaterialPageRoute(builder: (context) => Copyright()),
   );
       break;
-
+ case 2:
+     Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Support()),
+  );
+      break;
     case 3:
        Navigator.push(
     context,

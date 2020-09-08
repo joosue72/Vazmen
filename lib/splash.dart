@@ -124,7 +124,6 @@ class ScrollPage extends StatelessWidget {
                               color: Colors.black,
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
-<<<<<<< HEAD
 
                                Route route = MaterialPageRoute(builder: (bc) => HomePage());
                                                 Navigator.of(context).push(route);
@@ -144,13 +143,6 @@ class ScrollPage extends StatelessWidget {
                                //  return ProductList();
                               // }
                               // ));
-=======
-
-
-                               Route route = MaterialPageRoute(builder: (bc) => HomePage());
-                                                Navigator.of(context).push(route);
-                           
->>>>>>> 543e4be6741af3eb5337ab64d727c3e79eb73509
                              },
                       )
 
