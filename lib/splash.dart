@@ -124,6 +124,7 @@ class ScrollPage extends StatelessWidget {
                               color: Colors.black,
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
+<<<<<<< HEAD
 
                                Route route = MaterialPageRoute(builder: (bc) => HomePage());
                                                 Navigator.of(context).push(route);
@@ -143,6 +144,13 @@ class ScrollPage extends StatelessWidget {
                                //  return ProductList();
                               // }
                               // ));
+=======
+
+
+                               Route route = MaterialPageRoute(builder: (bc) => HomePage());
+                                                Navigator.of(context).push(route);
+                           
+>>>>>>> 543e4be6741af3eb5337ab64d727c3e79eb73509
                              },
                       )
 
@@ -208,7 +216,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
   Widget _textos(){
     final estiloTexto = TextStyle(color: Colors.white,fontSize:50);
     int currentPage = DateTime.now().day;
-    int currentPage2 = DateTime.now().weekday;
+    
     String dia;
 
     switch(currentPage.toString())
@@ -231,7 +239,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
         case '6':
             dia =  "Sabado";
         break;
-        case '7':
+        case '8':
             dia =  "Domingo";
         break;
       }

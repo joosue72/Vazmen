@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vazmen/copyrigth.dart';
 import 'package:vazmen/dashboard.dart';
 import 'package:flutter/services.dart';
 import 'package:vazmen/splash.dart';
@@ -46,8 +47,11 @@ class _HomePageState extends State<HomePage>
           setState(() {
             selectedItem = currIndex;
             switch(currIndex) {
-    case 0:
-     
+    case 1:
+     Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Copyright()),
+  );
       break;
 
     case 3:
