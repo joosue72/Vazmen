@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Animation/FadeAnimation.dart';
 
@@ -7,7 +8,40 @@ class Support extends StatefulWidget {
   _SupportState createState() => _SupportState();
 }
 
+ void _launchUrl(String Url) async{
+    if(await canLaunch(Url))
+    {
+      await launch(Url);
+    }
+    else{
+      throw 'No se pudo abrir';
+    }
+  }
+
+  void _launchCaller(int number) async{
+    var url = "tel:${number.toString()}";
+    if(await canLaunch(url)){
+      await launch(url);
+    }
+    else{
+      throw 'No se pudo abrir';
+    }
+  }
+
+  void _launcherEmail(String emailId) async{
+    var url = "mailto:$emailId?subject=Necesito Ayuda";
+     if(await canLaunch(url)){
+      await launch(url);
+    }
+    else{
+      throw 'No se pudo abrir';
+    }
+  }
+
 class _SupportState extends State<Support> {
+
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,15 +98,18 @@ class _SupportState extends State<Support> {
                               imgAssetPath: "assets/email.png",
                             )),
                              FadeAnimation(4,
-                            IconTile(
+                            IconTile2(
                               backColor: Color(0xffFEF2F0),
                               imgAssetPath: "assets/call.png",
                             )),
                              FadeAnimation(4,
-                            IconTile(
+                            IconTile3(
+                              
+                              
                               backColor: Color(0xffEBECEF),
                               imgAssetPath: "assets/video_call.png",
-                            )),
+                             
+                            ),),
                           ],
                         )
                       ],
@@ -151,29 +188,109 @@ class IconTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 16),
+    return GestureDetector(
+      onTap: (){
+     _launcherEmail('gumencode@gmail.com');
+      },
+      
       child: Container(
+      margin: EdgeInsets.only(right: 16),  
         height: 45,
         width: 45,
         decoration: BoxDecoration(
+          
             color: backColor, borderRadius: BorderRadius.circular(15)),
         child: Image.asset(
+          
           imgAssetPath,
           width: 20,
         ),
+        
+        
       ),
+      
     );
+    
   }
 }
+
+class IconTile2 extends StatelessWidget {
+  final String imgAssetPath;
+  final Color backColor;
+
+  IconTile2({this.imgAssetPath, this.backColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        _launchCaller(4771762014);
+      },
+      
+      child: Container(
+      margin: EdgeInsets.only(right: 16),  
+        height: 45,
+        width: 45,
+        decoration: BoxDecoration(
+          
+            color: backColor, borderRadius: BorderRadius.circular(15)),
+        child: Image.asset(
+          
+          imgAssetPath,
+          width: 20,
+        ),
+        
+        
+      ),
+      
+    );
+    
+  }
+}
+
+class IconTile3 extends StatelessWidget {
+  final String imgAssetPath;
+  final Color backColor;
+
+  IconTile3({this.imgAssetPath, this.backColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        _launchUrl('https://goo.gl/maps/gxCYAhoBz7taY3rZA');
+      },
+      
+      child: Container(
+      margin: EdgeInsets.only(right: 16),  
+        height: 45,
+        width: 45,
+        decoration: BoxDecoration(
+          
+            color: backColor, borderRadius: BorderRadius.circular(15)),
+        child: Image.asset(
+          
+          imgAssetPath,
+          width: 20,
+        ),
+        
+        
+      ),
+      
+    );
+    
+  }
+}
+
+
 
 
 class Developers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-     
+     onTap: (){
+        _launchCaller(4771762014);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -230,7 +347,7 @@ class Developers2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-     
+        _launchCaller(4774958375);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -287,7 +404,7 @@ class Developers3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-      
+        _launchCaller(4111982816);
       },
       child: Container(
         decoration: BoxDecoration(
