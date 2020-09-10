@@ -34,16 +34,7 @@ String fecha = DateFormat('kk:mm').format(now);
 TextEditingController _textFieldVariedad = TextEditingController();
 TextEditingController _textFieldCantidad = TextEditingController();
 
- var  _currentSelectedValue;
- var _currencies = [
-    "1ra",
-    "2da",
-    "3ra",
-    "4ta",
-    "Cambray",
-    "Monos",
-    "Gordas"
-  ];
+ 
 
  class _DetailsPageState extends State<DetailsPage> {
 
@@ -335,7 +326,7 @@ TextEditingController _textFieldCantidad = TextEditingController();
           ),
           Positioned(
             top: 8.0,
-            right: 7.5,
+            right: 50,
             child: Container(
               height: 50.0,
               width: 170.0,
@@ -347,70 +338,10 @@ TextEditingController _textFieldCantidad = TextEditingController();
             )
             
           ),
-Positioned(
-            top: 35.0,
-            right: 60.0,
-            child: Container(
-              height: 60.0,
-              width: 170.0,
-              child: FormField<String>(
 
-    
-
-          builder: (FormFieldState<String> state) {
-           
-            return InputDecorator(
-              
-              decoration: InputDecoration(
-
-                  labelStyle: TextStyle(color: Colors.black),
-                  errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                  hintText: 'Seleccione calidad',
-                  hintStyle: TextStyle(color: Colors.black, backgroundColor: Colors.black, fontSize: 14.0),
-                  prefixStyle: TextStyle(color: Colors.black),
-                  
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Colors.white),)),
-              isEmpty: _currentSelectedValue == '',
-              
-              child: DropdownButtonHideUnderline(
-                
-                child: DropdownButton<String>(
-                  dropdownColor: Colors.black,
-                  icon: Icon(Icons.arrow_drop_down_circle, color: Colors.white),
-                  focusColor: Colors.black,
-                  
-                  value: _currentSelectedValue,
-                  isDense: true,
-                  onChanged: (String newValue) {
-                    setState(() {
-                      _currentSelectedValue = newValue;
-                      state.didChange(newValue);
-                    });
-                  },
-                  items: _currencies.map((String value) {
-                    
-                    return DropdownMenuItem<String>(
-                      
-                      value: value,
-                      child: Text(value,
-                      style: TextStyle(color: Colors.white, backgroundColor: Colors.black, fontSize: 14.0),
-                      
-                      ),
-                      
-                    );
-                  }).toList(),
-                ),
-              ),
-            );
-          },
-        ),
-              
-            )
-            
-          ),
 
           Positioned(
-            top: 160.0,
+            top: 140.0,
             right: 60.0,
             child: Container(
               height: 50.0,
@@ -436,7 +367,7 @@ Positioned(
           ),
 
           Positioned(
-            top: 100.0,
+            top: 80.0,
             right: 60.0,
             child: Container(
               height: 50.0,
@@ -468,7 +399,7 @@ Positioned(
               
           Positioned(
             top: 230.0,
-            left: 30.0,
+            left: 50.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -489,7 +420,7 @@ Positioned(
         onTap:  () {
            obtCantidad = double.parse(_textFieldCantidad.text);
                       obtVariedad = _textFieldVariedad.text;   
-                      FirebaseFirestore.instance.collection('Inventario').doc("$obtVariedad").set({'Variedad': '$obtVariedad', 'Calidad': '$_currentSelectedValue', 'Cantidad': obtCantidad});
+                      FirebaseFirestore.instance.collection('Inventario').doc("$obtVariedad").set({'Variedad': '$obtVariedad', 'Cantidad': obtCantidad});
                       Navigator.pop(context);
                       _textFieldCantidad.text="";
                       _textFieldVariedad.text="";

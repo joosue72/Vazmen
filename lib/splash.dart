@@ -231,7 +231,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
         case '6':
             dia =  "Sabado";
         break;
-        case '8':
+        case '9':
             dia =  "Domingo";
         break;
       }
