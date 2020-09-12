@@ -22,16 +22,7 @@ final db = FirebaseFirestore.instance;
   String calidad;
   dynamic  cantidad;
   String variedad;
-  var  _currentSelectedValue;
- var _currencies = [
-    "1ra",
-    "2nda",
-    "3ra",
-    "4ta",
-    "Cambray",
-    "Monos",
-    "Gordas"
-  ];
+  
 class _NuevoProductoState extends State<NuevoProducto> {
 
   TextFormField buildTextFormFieldCantidad() {
@@ -166,8 +157,8 @@ TextFormField buildTextFormFieldVariedad() {
                 children: <Widget>[
           
           Container(
-            color: Color(0xFF000000).withOpacity(0.5),
-            height: 500.0,
+            color: Color(0xFF000000).withOpacity(0.8),
+            height: 400.0,
                     width: MediaQuery.of(context).size.width,
           child: ListView(
                       padding: EdgeInsets.all(8),
@@ -178,56 +169,7 @@ TextFormField buildTextFormFieldVariedad() {
                         SizedBox(height: 20.0,),
                       
 
- FormField<String>(
 
-    
-
-          builder: (FormFieldState<String> state) {
-           
-            return InputDecorator(
-              
-              decoration: InputDecoration(
-
-                  labelStyle: TextStyle(color: Colors.white),
-                  errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                  hintText: 'Seleccione calidad',
-                  hintStyle: TextStyle(color: Colors.black, backgroundColor: Colors.white),
-                  prefixStyle: TextStyle(color: Colors.white),
-                  
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide(color: Colors.white),)),
-              isEmpty: _currentSelectedValue == '',
-              
-              child: DropdownButtonHideUnderline(
-                
-                child: DropdownButton<String>(
-                  dropdownColor: Colors.black,
-                  icon: Icon(Icons.arrow_drop_down_circle, color: Colors.white),
-                  focusColor: Colors.white,
-                  value: _currentSelectedValue,
-                  isDense: true,
-                  onChanged: (String newValue) {
-                    setState(() {
-                      _currentSelectedValue = newValue;
-                      state.didChange(newValue);
-                    });
-                  },
-                  items: _currencies.map((String value) {
-                    
-                    return DropdownMenuItem<String>(
-                      
-                      value: value,
-                      child: Text(value,
-                      style: TextStyle(color: Colors.white),
-                      
-                      ),
-                      
-                    );
-                  }).toList(),
-                ),
-              ),
-            );
-          },
-        ),
                         SizedBox(height: 20.0,),
                         Form(child: buildTextFormFieldCantidad(),),
                         SizedBox(height: 50.0,),
@@ -374,7 +316,7 @@ void correcto()
       variedad = _textFieldVariedad.text.toString();
                                cantidad = double.parse(_textFieldController.text);
                                calidad = _textFieldCalidad.text.toString();
-                  FirebaseFirestore.instance.collection('Inventario').doc("$variedad").set({'Variedad': '$variedad', 'Cantidad': cantidad, 'Calidad': '$_currentSelectedValue'});
+                  FirebaseFirestore.instance.collection('Inventario').doc("$variedad").set({'Variedad': '$variedad', 'Cantidad': cantidad});
                     _textFieldCalidad.text="";
   _textFieldVariedad.text="";
   _textFieldController.text="";
