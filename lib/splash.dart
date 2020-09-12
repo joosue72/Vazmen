@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vazmen/homepage.dart';
-
 import 'Animation/FadeAnimation.dart';
 import 'dashboard.dart';
 import 'homepage.dart';
@@ -24,140 +23,112 @@ class ScrollPage extends StatelessWidget {
 
   Widget _pagina2(BuildContext context) {
 
-  
-    
-    SystemChrome.setEnabledSystemUIOverlays([]);
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(108, 192, 218, 1),
-      body: SingleChildScrollView(
+   
+      body: Container(
+    
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Color(0xFF202020),
+                Color(0xFF202025)
+            ]
+          )
+        ),
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 400,
-              child: Stack(
-                children: <Widget>[
-                  
-                  Positioned(
-                    height: 400,
-                    width: width+10,
-                    child: FadeAnimation(1.3, Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/background-2.png'),
-                          fit: BoxFit.fill
-                        )
-                      ),
-                    )),
-                  ),
-                  Positioned(
-                    height: 300,
-                    width: width+10,
-                    child: FadeAnimation(1.3, Container(
-                      decoration: BoxDecoration(
-                        
-                        image: DecorationImage(
-                          
-                          image: AssetImage('assets/pp.png')
-                          
-                        )
-                      ),
-                    )),
-                  )
-                ],
-              ),
-            ),
+            SizedBox(height: 80,),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeAnimation(1.5, Text("Inicio De Sesión", style: TextStyle(color: Color.fromRGBO(0, 0, 0, 100), fontWeight: FontWeight.bold, fontSize: 30),)),
-                  SizedBox(height: 30,),
-                  FadeAnimation(1.7, Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 100),
-                          blurRadius: 30,
-                          offset: Offset(0, 10),
-                        )
-                      ]
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                  
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: TextField(
-                            onSubmitted: (myController)
-                            {
-                           //   validarLogin(context);
-                            },
-                            obscureText: true,
-                          // controller: myController,
-                            decoration: InputDecoration(
-                              
-                              border: InputBorder.none,
-                              hintText: "Contraseña",
-                              hintStyle: TextStyle(color: Colors.black)
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-                  SizedBox(height: 50,),
-                  
-                  FadeAnimation(1.9, Container(
-                    height: 50,
-                    margin: EdgeInsets.symmetric(horizontal: 60),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.black,
-                    ),
-                    child: Center(
-                      child: RaisedButton(
-                              color: Colors.black,
+                  FadeAnimation(1,Text("Login", style: TextStyle(color:Colors.white,fontSize: 50),)),
+                  SizedBox(height: 10,),
+                  FadeAnimation(2,Text("Bienvenido de nuevo", style: TextStyle(color:Colors.white,fontSize: 18),))
+                ],
+              ),
+            ),
+            SizedBox(height: 20,),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft:Radius.circular(60), topRight:Radius.circular(60))
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    
+                    children: <Widget>[
+                      SizedBox(height: 60,),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [ BoxShadow(
+                            color: Color.fromRGBO(153, 153, 153,153),
+                            blurRadius: 20,
+                            offset: Offset(0,10)
+                          )]
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                           FadeAnimation(3, Container(
+                              decoration: BoxDecoration(
+                                border: Border(bottom: BorderSide(color: Colors.grey[200]))
+                              ),
+                              child: FadeAnimation(3,TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Introduce tu contraseña",
+                                  hintStyle: TextStyle(color:Colors.grey),
+                                  border: InputBorder.none
+                                ),
+                              )),
+                            ))
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 40,),
+
+                   
+                      SizedBox(height: 20,),
+                      Container(
+                        height: 50,
+                        margin: EdgeInsets.symmetric(horizontal:50),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.grey[900]
+                        ),
+                        child: Center(
+                      child: FadeAnimation(4,RaisedButton(
+                              color: Colors.grey[900],
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
 
                                Route route = MaterialPageRoute(builder: (bc) => HomePage());
                                                 Navigator.of(context).push(route);
-                             //  Navigator.push(context,PageRouteBuilder(
-                              //   transitionDuration: Duration(seconds: 1),
-                              //transitionsBuilder: (BuildContext context, Animation<double> animation,Animation<double> secAnimation, Widget child)
-                              //   {
-                                //   animation = CurvedAnimation(parent: animation,curve: Curves.elasticInOut);
-                                  //  return ScaleTransition(
-                                    //  alignment: Alignment.center,
-                                      //scale: animation,
-                                     // child: child,
-                                   // );
-                                // },
-                                 //pageBuilder: (BuildContext context, Animation<double> animation,Animation<double> secAnimation)
-                              // {
-                               //  return ProductList();
-                              // }
-                              // ));
+                            
                              },
-                      )
+                      ))
 
                     ),
+                      )
 
-                  )
-                  
-                  ),
-                  
-                ],
+                    ],
+                  )),
               ),
             )
+         
           ],
         ),
-      ),
+      )
+            
     );
   
    
@@ -180,7 +151,7 @@ class ScrollPage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Color.fromRGBO(108, 192, 218, 1),
+      color: Color(0xFF202020),
     );
 
 
@@ -211,30 +182,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
     
     String dia;
 
-    switch(currentPage.toString())
-      {
-        case '1':
-            dia =  "Lunes";
-        break;
-        case '2':
-            dia =  "Martes";
-        break;
-        case '3':
-            dia =  "Miercoles";
-        break;
-        case '4':
-            dia =  "Jueves";
-        break;
-        case '5':
-            dia =  "Viernes";
-        break;
-        case '6':
-            dia =  "Sabado";
-        break;
-        case '8':
-            dia =  "Domingo";
-        break;
-      }
+    
      
     
 
@@ -243,8 +191,8 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
         
         children:<Widget> [
           SizedBox(height: 20.0),
-          Text(currentPage.toString(), style: estiloTexto),
-          Text(dia, style: estiloTexto,),
+        //  Text(currentPage.toString(), style: estiloTexto),
+      //    Text(dia, style: estiloTexto,),
           Expanded(child: Container()),
           Icon(Icons.keyboard_arrow_down, size: 70.0, color: Colors.white)
         ],
