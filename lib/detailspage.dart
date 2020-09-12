@@ -268,27 +268,7 @@ TextEditingController _textFieldCantidad = TextEditingController();
             )
             
           ),
-          Positioned(
-            top: 120.0,
-            right: 15.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text("${doc.data()['Calidad']}",
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                  textStyle: TextStyle(
-                    color: Colors.white
-                  )
-                )
-                ),
-                
-              ],
-              
-            )
-            
-          )
+          
           
         ]
         

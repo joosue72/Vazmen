@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vazmen/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -158,7 +157,7 @@ TextFormField buildTextFormFieldVariedad() {
           
           Container(
             color: Color(0xFF000000).withOpacity(0.8),
-            height: 400.0,
+            height: 500.0,
                     width: MediaQuery.of(context).size.width,
           child: ListView(
                       padding: EdgeInsets.all(8),
@@ -261,10 +260,7 @@ TextFormField buildTextFormFieldVariedad() {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
         IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: (){
-          Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => HomePage()),
-  );
+          Navigator.pop(context);
 
         }),
         Text('Agregar Nuevo Producto', style: GoogleFonts.montserrat(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vazmen/Ventas.dart';
 import 'package:vazmen/detailspage.dart';
 
 
@@ -44,7 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
             height: MediaQuery.of(context).size.height - 156.0,
             child: ListView(
               children: <Widget>[
-                _buildListItem('assets/frutitas.jpg', 'Ventas',
+                _buildListItem1('assets/frutitas.jpg', 'Ventas',
                     'Registar Una Venta Nueva'),
                 _buildListItem1('assets/gas.jpg', 'Gastos',
                     'Registre Un Gasto Nuevo'),
@@ -152,7 +153,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DetailsPage(imgPath: imgPath, title: country)));
+                              builder: (context) => Ventas(imgPath: imgPath, title: country)));
                         },
                         child: Container(
                             height: 50.0,
