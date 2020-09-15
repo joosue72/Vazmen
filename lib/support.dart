@@ -8,10 +8,10 @@ class Support extends StatefulWidget {
   _SupportState createState() => _SupportState();
 }
 
- void _launchUrl(String Url) async{
-    if(await canLaunch(Url))
+ void _launchUrl(String url) async{
+    if(await canLaunch(url))
     {
-      await launch(Url);
+      await launch(url);
     }
     else{
       throw 'No se pudo abrir';

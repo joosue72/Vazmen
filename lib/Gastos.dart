@@ -3,24 +3,23 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:vazmen/NuevoProducto.dart';
 import 'package:vazmen/VentasPendientes.dart';
 import 'package:vazmen/homepage.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 
 
- class Ventas extends StatefulWidget {
-  
+
+ class Gastos extends StatefulWidget {
   final imgPath, title;
 
-  Ventas({this.imgPath, this.title}); 
+  Gastos({this.imgPath, this.title}); 
 
   @override
-  _VentasState createState() => _VentasState();
+  _GastosState createState() => _GastosState();
 }
+
 final db = FirebaseFirestore.instance;
 DateTime now = DateTime.now();
 String fecha = DateFormat('yyyy-MM-dd').format(now);
@@ -28,12 +27,11 @@ TextEditingController _textFieldController = TextEditingController();
 TextEditingController _textFieldCantidad = TextEditingController();
 dynamic cantidad, total = 0;
 dynamic saldo;
-dynamic cantidadInventario;
-String productoInventario;
-int cont;
-class _VentasState extends State<Ventas> {
+String nombre;
 
- bool pendiente;
+class _GastosState extends State<Gastos> {
+
+bool pendiente;
   
   @override
   void initState() {
@@ -41,7 +39,6 @@ class _VentasState extends State<Ventas> {
     super.initState();
     
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +99,7 @@ class _VentasState extends State<Ventas> {
                       borderRadius: BorderRadius.circular(7.0),
                       color: Color(0xFF353535)),
                   child: Center(
-                    child: Icon(Icons.shopping_cart, color: Colors.white),
+                    child: Icon(Icons.add_shopping_cart, color: Colors.white),
                   ),
                 ),
               ],
@@ -157,97 +154,13 @@ class _VentasState extends State<Ventas> {
                       scrollDirection: Axis.vertical,
                       children: <Widget>[
                         
-                        Form(
-            child:  ListView(
-              scrollDirection: Axis.vertical,
-    shrinkWrap: true,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.add_shopping_cart, color: Colors.white),
-                    SizedBox(width: 50.0,),
-                     StreamBuilder<QuerySnapshot>(
-                       
-                  stream: db.collection('Inventario').snapshots(),
-                  
-                  builder: (context, snapshot) {
-                    
-                    if (!snapshot.hasData)
-
-                      const Text("Loading.....");
-                    else {
-                      List<DropdownMenuItem> currencyItems = [];
-                      for (int i = 0; i < snapshot.data.docs.length; i++) {
-                        DocumentSnapshot snap = snapshot.data.docs[i];
-                        currencyItems.add(
-                          DropdownMenuItem(
-                            
-                            child: Text(
-                              
-                              snap.reference.id,
-                              style: TextStyle(color: Colors.white),
-                              
-                            ),
-                            value: "${snap.id}",
-                          ),
-                        );
-                      }return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          
-                          
-                          DropdownButton(
-                            
-                            items: currencyItems,
-                            onChanged: (currencyValue) {
-                              final snackBar = SnackBar(
-                                backgroundColor: Colors.black,
-                                content: Text(
-                                  'Variedad: $currencyValue',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              );
-                              Scaffold.of(context).showSnackBar(snackBar);
-                              setState(() {
-                                selectedCurrency = currencyValue;
-                              });
-                            },
-                            value: selectedCurrency,
-                            isExpanded: false,
-                            hint: new Text(
-                              "Seleccione Variedad",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            dropdownColor: Colors.black,
-                            icon: Icon(Icons.arrow_drop_down, color: Colors.white, size: 22.0,),
-                          ),
-                        ],
-                      );
-                    }
-                    return SizedBox(height: 10.0,);
-                  }),
-                  
-                  SizedBox(width: 10.0,),
-                   
-                  SizedBox(width: 10.0,),
-                  ],
-                  
-                ),
-                
-              ],
-            ),
-          ),
-          SizedBox(height: 15.0,),
+                        
+          SizedBox(height: 30.0,),
           
             Container(
               width: 15.0,
               child: TextFormField(
-      onChanged: (_textFieldController){
-        cantidad=double.parse(_textFieldCantidad.text);
-        total=double.parse(_textFieldController);
-        total*=cantidad;
-      },
+      
       keyboardType: TextInputType.number,
       controller: _textFieldController,
       style: TextStyle(
@@ -257,8 +170,8 @@ class _VentasState extends State<Ventas> {
       decoration: InputDecoration(
         
          
-         prefixIcon: Icon(Icons.attach_money, color: Colors.white),
-        labelText: "Costo por papa",
+         prefixIcon: Icon(Icons.person_add, color: Colors.white),
+        labelText: "Nombre del Gasto",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
@@ -279,16 +192,11 @@ class _VentasState extends State<Ventas> {
       ),
     ),
             ),
-            SizedBox(height: 15.0,),
+            SizedBox(height: 30.0,),
             Container(
               width: 15.0,
               child: TextFormField(
-      onChanged: (_textFieldCantidad){
-        cantidad=double.parse(_textFieldCantidad);
-        total=double.parse(_textFieldController.text);
-        total*=cantidad;
-        
-      },
+      
       keyboardType: TextInputType.number,
       controller: _textFieldCantidad,
       style: TextStyle(
@@ -298,8 +206,8 @@ class _VentasState extends State<Ventas> {
       decoration: InputDecoration(
         
          
-        prefixIcon: Icon(Icons.storage, color: Colors.white),
-        labelText: "Cantidad de Papas",
+        prefixIcon: Icon(Icons.attach_money, color: Colors.white),
+        labelText: "Cantidad del Gasto",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
@@ -322,43 +230,9 @@ class _VentasState extends State<Ventas> {
     
             ),
             SizedBox(height: 25.0,),
-            Container(
-              width: 15.0,
-              child: LiteRollingSwitch(
-    //initial value
-     
-    value: true,
-    textOn: 'Pagado',
-    textOff: 'Pendiente',
-    colorOn: Color(0xFF353535),
-    colorOff: Colors.redAccent[700],
-    iconOn: Icons.done,
-    iconOff: Icons.remove_circle_outline,
-    textSize: 16.0,
-    
-    onChanged: (bool isOn) {
-      
-            pendiente = isOn;
-             Global.shared.pendiente = isOn;
-             isOn = isOn;
-        print(isOn); 
-    },
-    
-    
-), 
-    
-            ),
+            
             SizedBox(height: 40.0,),
-            Container(
-              
-              
-              
-              child: Text("Total: "+total.toString()+" \$",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
-                            textStyle: TextStyle(color: Colors.white))),
-            ),
+           
             SizedBox(height: 50.0,),
             ArgonButton(
               height: 50,
@@ -384,7 +258,6 @@ class _VentasState extends State<Ventas> {
                   else
                   {
                     correcto();
-                    actualizarInventario();
                     stopLoading();
                   }
 
@@ -428,7 +301,7 @@ class _VentasState extends State<Ventas> {
         ],
       ),
       
-     floatingActionButton: FloatingActionButton(child: Icon(Icons.watch_later), backgroundColor: Color(0xFF202020),
+     floatingActionButton: FloatingActionButton(child: Icon(Icons.analytics_outlined), backgroundColor: Color(0xFF202020),
      onPressed: (){
         Route route = MaterialPageRoute(builder: (bc) => VentasPendientes());
                                Navigator.of(context).push(route);
@@ -436,9 +309,6 @@ class _VentasState extends State<Ventas> {
      ),
     );
   }
-
- 
-
   void correcto()
 {
   showGeneralDialog(
@@ -519,29 +389,14 @@ class _VentasState extends State<Ventas> {
             numerofecha = 12;
         break;
       }
-      if(pendiente == false)
-      {
-        pendiente = true;
-        saldo = total;
-        print(saldo);
-        cantidad = double.parse(_textFieldController.text);
+      
+        cantidad = double.parse(_textFieldCantidad.text);
+        nombre=_textFieldController.text;
                                
-                  FirebaseFirestore.instance.collection('Ventas').add({'Pendiente':pendiente,'Cantidad': cantidad, 'Variedad': '$selectedCurrency', 'totalVenta': total=0,'Saldo':saldo,'Mes':numerofecha,'Dia':int.parse(dia),'Año':int.parse(formatter)});
-                   _textFieldCantidad.text="";
-  _textFieldController.text="";
-      pendiente=false;   
-      }
-      else {
-        pendiente = false;
-        cantidad = double.parse(_textFieldController.text);
-                               
-                  FirebaseFirestore.instance.collection('Ventas').add({'Pendiente':pendiente,'Cantidad': cantidad, 'Variedad': '$selectedCurrency', 'totalVenta': total,'Mes':numerofecha,'Dia':int.parse(dia),'Año':int.parse(formatter)});
-                    
-  _textFieldCantidad.text="";
-  _textFieldController.text="";
-  total=0; 
-  pendiente=true;
-      }
+                  FirebaseFirestore.instance.collection('Gastos').add({'Nombre':nombre,'Cantidad': cantidad, 'Mes':numerofecha,'Dia':int.parse(dia),'Año':int.parse(formatter)});
+                   
+      _textFieldController.text="";
+      _textFieldCantidad.text="";
                               
                                
   print(total);               
@@ -583,41 +438,8 @@ showGeneralDialog(
       },
     );
 }
- void actualizarInventario() async
- {
-   cont = 0;
-   db
-      .collection("Inventario")
-      .where("Variedad", isEqualTo: selectedCurrency)
-      .snapshots()
-      .listen((result) {
-    result.docs.forEach((result) {
-      productoInventario = result.data()['Cantidad'].toString();
-      cantidadInventario = double.parse(productoInventario);
-   if(pendiente==true)
-   {
-     cantidadInventario -= cantidad;
-     cont++;
-     if(cont == 1)
-     {
-         db.collection('Inventario').doc('$selectedCurrency').update({'Cantidad': cantidadInventario});
-     }
-   }
-   else
-   {
-    cantidadInventario -= cantidad;
-     cont++;
-     if(cont == 1)
-     {
-         db.collection('Inventario').doc('$selectedCurrency').update({'Cantidad': cantidadInventario});
-     }
-   }
-    });
-  });
-  
- }
+ 
 }
-
 class Global{
   static final shared =Global();
   bool pendiente = false;

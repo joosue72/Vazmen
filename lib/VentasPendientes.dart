@@ -19,7 +19,7 @@ import 'package:intl/intl.dart';
   dynamic total2;
   String calidad, variedad;
   TextEditingController _textFieldVariedad = TextEditingController();
-TextEditingController _textFieldCantidad = TextEditingController();
+
 DateTime now = DateTime.now();
 String fecha = DateFormat('yyyy-MM-dd').format(now);
 
@@ -240,7 +240,7 @@ Card buildItem(DocumentSnapshot doc) {
             SizedBox(height: 12),
             Positioned(
             top: 165.0,
-            left: 50.0,
+            left: 10.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

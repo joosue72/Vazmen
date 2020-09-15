@@ -6,9 +6,12 @@ import 'dashboard.dart';
 import 'homepage.dart';
 
 class ScrollPage extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      
       body: PageView(
         scrollDirection: Axis.vertical  ,
         children: <Widget>[
@@ -24,7 +27,7 @@ class ScrollPage extends StatelessWidget {
   Widget _pagina2(BuildContext context) {
 
     return Scaffold(
-   
+      
       body: Container(
     
         width: double.infinity,
@@ -177,10 +180,8 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
   }
 
   Widget _textos(){
-    final estiloTexto = TextStyle(color: Colors.white,fontSize:50);
-    int currentPage = DateTime.now().day;
     
-    String dia;
+ 
 
     
      
