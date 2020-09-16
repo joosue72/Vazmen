@@ -1,5 +1,5 @@
 
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +21,8 @@ final db = FirebaseFirestore.instance;
   String calidad;
   dynamic  cantidad;
   String variedad;
+  DateTime now = DateTime.now();
+String fecha = DateFormat('yyyy-MM-dd').format(now);
   
 class _NuevoProductoState extends State<NuevoProducto> {
 
@@ -151,30 +153,130 @@ TextFormField buildTextFormFieldVariedad() {
            Positioned(
             top: 100.0,
             child: Padding(
-              padding: EdgeInsets.all(0.0),
+              padding: EdgeInsets.all(15.0),
               child: Column(
                 children: <Widget>[
-          
-          Container(
-            color: Color(0xFF000000).withOpacity(0.8),
-            height: 500.0,
-                    width: MediaQuery.of(context).size.width,
-          child: ListView(
+                  Container(
+                    width: MediaQuery.of(context).size.width - 15.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(fecha,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          textStyle: TextStyle(color: Colors.white),
+                        )
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.date_range, color: Colors.white),
+                          onPressed: () {},
+                        )
+                      ],
+                    )
+                  ),
+                 
+                  SizedBox(height: 20.0),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 15.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        
+          SizedBox(width: 10,),
+                      ],
+                    )
+                  ),
+                  SizedBox(height: 15.0),
+                  
+                  Container(
+                    height: 500.0,
+                    
+                    color: Colors.black.withOpacity(0.7),
+                    width: 320.0,
+                    child: ListView(
                       padding: EdgeInsets.all(8),
                       scrollDirection: Axis.vertical,
                       children: <Widget>[
-                        SizedBox(height: 20.0,),
-                        Form(child: buildTextFormFieldVariedad(),),
-                        SizedBox(height: 20.0,),
-                      
-
-
-                        SizedBox(height: 20.0,),
-                        Form(child: buildTextFormFieldCantidad(),),
-                        SizedBox(height: 50.0,),
-
-
-                        ArgonButton(
+                      Container(
+              width: 15.0,
+              child: TextFormField(
+      
+      keyboardType: TextInputType.number,
+      controller: _textFieldVariedad,
+      style: TextStyle(
+        color: Colors.white,
+    ),
+      cursorColor: Colors.white,
+      decoration: InputDecoration(
+        
+         
+        prefixIcon: Icon(Icons.storage, color: Colors.white),
+        labelText: "Variedad",
+        labelStyle: TextStyle(color: Colors.white) ,
+        hoverColor: Color(0xFFB71C1C),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+      ),
+    ),
+    
+            ),   
+                        
+          
+            Container(
+              width: 15.0,
+              child: TextFormField(
+      
+      keyboardType: TextInputType.number,
+      controller: _textFieldController,
+      style: TextStyle(
+        color: Colors.white,
+    ),
+      cursorColor: Colors.white,
+      decoration: InputDecoration(
+        
+         
+         prefixIcon: Icon(Icons.attach_money, color: Colors.white),
+        labelText: "Cantidad",
+        labelStyle: TextStyle(color: Colors.white) ,
+        hoverColor: Color(0xFFB71C1C),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.white,
+          width: 2,
+        )),
+      ),
+    ),
+            ),
+            SizedBox(height: 15.0,),
+           
+            
+            
+            SizedBox(height: 50.0,),
+            ArgonButton(
               height: 50,
               
               roundLoadingShape: true,
@@ -198,6 +300,7 @@ TextFormField buildTextFormFieldVariedad() {
                   else
                   {
                     correcto();
+
                     stopLoading();
                   }
 
@@ -224,17 +327,20 @@ TextFormField buildTextFormFieldVariedad() {
               borderRadius: 5.0,
               color: Colors.white
             ),
+            
+          
 
-
-
-          ],
-          ) 
-          ),
-          ],
+          
+                      ],
+                    )
+                    
+                  )
+                  
+                ],
               )
               
             )
-           )
+          )
             
       ]
       ),

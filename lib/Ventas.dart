@@ -108,6 +108,8 @@ class _VentasState extends State<Ventas> {
               ],
             )
           ),
+
+          //aqui
           Positioned(
             top: 100.0,
             child: Padding(

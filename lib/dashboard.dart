@@ -50,7 +50,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     'Registar Una Venta Nueva'),
                 _buildListItemGastos('assets/gas.jpg', 'Gastos',
                     'Registre Un Gasto Nuevo'),
-                    _buildListItemGastos('assets/inve.jpg', 'Inventario',
+                    _buildListItem('assets/inve.jpg', 'Inventario',
                     'Ver Su Inventario'),
                     _buildListItem('assets/graficos.jpg', 'Gráficos',
                     'Ver Sus Estadísticas'),
