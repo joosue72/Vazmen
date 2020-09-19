@@ -4,6 +4,8 @@ import 'package:vazmen/Ventas.dart';
 import 'package:vazmen/detailspage.dart';
 import 'package:vazmen/Gastos.dart';
 
+import 'Grafica_Ventas/venta_grafica.dart';
+
 
  class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -98,7 +100,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DetailsPage(imgPath: imgPath, title: country)));
+                              builder: (context) =>  venta_grafica()));
                         },
                         child: Container(
                             height: 50.0,

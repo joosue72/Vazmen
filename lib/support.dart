@@ -29,7 +29,7 @@ class Support extends StatefulWidget {
   }
 
   void _launcherEmail(String emailId) async{
-    var url = "mailto:$emailId?subject=Necesito Ayuda";
+    var url = "messageto:$emailId?subject=Necesito Ayuda";
      if(await canLaunch(url)){
       await launch(url);
     }
@@ -172,7 +172,24 @@ class _SupportState extends State<Support> {
                 Developers3()),
                   SizedBox(height: 20,),
 
-            ],
+                FadeAnimation(5.4,  Text("Share", style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600
+              ),)),
+SizedBox(height: 20,),
+            
+                   FadeAnimation(5.4,   new Container(
+                        child: Center( child: new Image.asset(
+                          'assets/qr.png',
+                          height: 180.0,
+                          fit: BoxFit.cover,
+                        )),
+                      )),
+                      new Container(
+                        child: new Text('long information text'),
+                      ),
+                    ],
           ),
         ),
       ),

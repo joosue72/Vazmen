@@ -301,7 +301,7 @@ bool pendiente;
         ],
       ),
       
-     floatingActionButton: FloatingActionButton(child: Icon(Icons.analytics_outlined), backgroundColor: Color(0xFF202020),
+     floatingActionButton: FloatingActionButton(child: Icon(Icons.android), backgroundColor: Color(0xFF202020),
      onPressed: (){
         Route route = MaterialPageRoute(builder: (bc) => VentasPendientes());
                                Navigator.of(context).push(route);
