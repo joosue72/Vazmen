@@ -82,11 +82,11 @@ class ScrollPage extends StatelessWidget {
                         ),
                         child: Column(
                           children: <Widget>[
-                           FadeAnimation(3, Container(
+                           FadeAnimation(2.1, Container(
                               decoration: BoxDecoration(
                                 border: Border(bottom: BorderSide(color: Colors.grey[200]))
                               ),
-                              child: FadeAnimation(3,TextField(
+                              child: FadeAnimation(2.2,TextField(
                                 decoration: InputDecoration(
                                   hintText: "Introduce tu contraseña",
                                   hintStyle: TextStyle(color:Colors.grey),
@@ -109,7 +109,7 @@ class ScrollPage extends StatelessWidget {
                           color: Colors.grey[900]
                         ),
                         child: Center(
-                      child: FadeAnimation(4,RaisedButton(
+                      child: FadeAnimation(2.3,RaisedButton(
                               color: Colors.grey[900],
                              child: Text("Login", style: TextStyle(color: Colors.white),),
                              onPressed: (){
