@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vazmen/Animation/FadeAnimation.dart';
 import '../Ventas.dart';
-import '../homepage.dart';
 import '../menugraficas.dart';
 import 'venta_widget.dart';
 
-class venta_grafica extends StatefulWidget {
+// ignore: camel_case_types
+class venta_gastos extends StatefulWidget {
  
   
 
   @override
-  _venta_graficaState createState() => _venta_graficaState();
+  _venta_gastosState createState() => _venta_gastosState();
 }
 
-class _venta_graficaState extends State<venta_grafica> {
+// ignore: camel_case_types
+class _venta_gastosState extends State<venta_gastos> {
 
    PageController _controller;
   int currentPage = DateTime.now().month - 1;
@@ -29,9 +30,10 @@ class _venta_graficaState extends State<venta_grafica> {
   void initState() {
     super.initState();
 
+    // ignore: deprecated_member_use
     _query = Firestore.instance
 
-        .collection('Ventas')
+        .collection('Gastos')
         .where("Mes", isEqualTo: currentPage + 1)
         .snapshots();
 
@@ -143,6 +145,7 @@ backgroundColor: Color(0xFF1B1B1B),
 
                   
                   
+                  // ignore: deprecated_member_use
                   documents: data.data.documents,
                   graphType: currentType,
                   month: currentPage,
@@ -196,8 +199,9 @@ backgroundColor: Color(0xFF1B1B1B),
         onPageChanged: (newPage) {
           setState(() {
             currentPage = newPage;
+            // ignore: deprecated_member_use
             _query = Firestore.instance
-                .collection('Ventas')
+                .collection('Gastos')
                 .where("Mes", isEqualTo: currentPage + 1)
                 .snapshots();
           });
@@ -239,7 +243,7 @@ backgroundColor: Color(0xFF1B1B1B),
           );
 
         })),
-        FadeAnimation(1,Text('Lista de Ventas', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,color: Colors.white),)),
+        FadeAnimation(1,Text('Lista de Gastos', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,color: Colors.white),)),
         FadeAnimation(1,IconButton(icon: Icon(Icons.trending_up,color: Colors.white), onPressed: (){
           Route route = MaterialPageRoute(builder: (bc) => Menug());
                                                 Navigator.of(context).push(route);
