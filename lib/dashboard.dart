@@ -55,9 +55,8 @@ class _DashboardPageState extends State<DashboardPage> {
                     _buildListItem('assets/inve.jpg', 'Inventario',
                     'Ver Su Inventario'),
                     _buildListItem('assets/graficos.jpg', 'Gráficos',
-                    'Ver Sus Estadísticas'),
-                    _buildListItem('assets/distr.jpg', 'Proveedores',
-                    'Agregué o vea sus Proveedores')
+                    'Ver Sus Estadísticas')
+                    
               ],
             ))
       ],
