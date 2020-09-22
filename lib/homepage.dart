@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage>
           BottomNavigationBarItem(
             backgroundColor: Color(0xFF1B1B1B),
             icon: Icon(Icons.exit_to_app),
-            title: Container(
+            title:  Container(
               height: 5.0,
               width: 5.0,
               decoration: BoxDecoration(

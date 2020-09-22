@@ -10,12 +10,18 @@ import 'venta_widget.dart';
 class venta_grafica extends StatefulWidget {
  
   
+   final imgPath, title;
+
+  venta_grafica({this.imgPath, this.title}); 
+  
 
   @override
   _venta_graficaState createState() => _venta_graficaState();
 }
 
+
 class _venta_graficaState extends State<venta_grafica> {
+  
 
    PageController _controller;
   int currentPage = DateTime.now().month - 1;
@@ -28,7 +34,7 @@ class _venta_graficaState extends State<venta_grafica> {
   void initState() {
     super.initState();
 
-    _query = Firestore.instance
+    _query = FirebaseFirestore.instance
 
         .collection('Ventas')
         .where("Mes", isEqualTo: currentPage + 1)
@@ -88,8 +94,9 @@ backgroundColor: Color(0xFF1B1B1B),
         child: Icon(Icons.add,color: Colors.black,),
         backgroundColor: Colors.white,
         onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Ventas()));
+          
+             Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HomePage()));
 
           
         },
@@ -142,7 +149,7 @@ backgroundColor: Color(0xFF1B1B1B),
 
                   
                   
-                  documents: data.data.documents,
+                  documents: data.data.docs,
                   graphType: currentType,
                   month: currentPage,
                 );
@@ -195,7 +202,7 @@ backgroundColor: Color(0xFF1B1B1B),
         onPageChanged: (newPage) {
           setState(() {
             currentPage = newPage;
-            _query = Firestore.instance
+            _query = FirebaseFirestore.instance
                 .collection('Ventas')
                 .where("Mes", isEqualTo: currentPage + 1)
                 .snapshots();

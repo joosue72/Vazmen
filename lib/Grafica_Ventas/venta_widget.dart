@@ -124,7 +124,7 @@ class _VentaWidgetState extends State<VentaWidget> {
             fontSize: 30.0
           ),
         ),
-        Text("Total de Ventas por Semana",
+        Text("Total de Ventas por Mes",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16.0,
@@ -155,14 +155,15 @@ class _VentaWidgetState extends State<VentaWidget> {
         ),
       );
     }
+    return SizedBox(height: 10.0,);
   }
   
-  Widget _item(IconData icon, String nombre, int percent,double value){
+  Widget _item(IconData icon, String nombre, int percent,double value,){
     return ListTile(
       onTap: (){
         
-       Navigator.of(context).pushNamed('/details',
-            arguments: DetailsPage1(nombre, widget.month));
+      // Navigator.pushNamed(context, '/details',
+        //    arguments: DetailsPage1(nombre, widget.month));
       },
 
       leading: Icon(icon, size: 32.0,color: Colors.white,),

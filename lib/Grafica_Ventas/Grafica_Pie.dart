@@ -22,7 +22,7 @@ class _PieGraphWidgetState extends State<PieGraphWidget> {
      List<Series<double, num>> series = [
       Series<double, int>(
         id: 'Gasto',
-        colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+        seriesColor: ColorUtil.fromDartColor(Colors.grey.shade700),
         domainFn: (value, index) => index,
         measureFn: (value, _) => value,
         data: widget.data,

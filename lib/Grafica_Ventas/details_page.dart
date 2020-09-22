@@ -20,7 +20,7 @@ class _DetailsParamsState extends State<DetailsParams> {
   @override
   Widget build(BuildContext context) {
 
-     var _query = Firestore.instance
+     var _query = FirebaseFirestore.instance
                 .collection('Ventas')
                 .where("Mes", isEqualTo: widget.params.month + 1)
                 .where("Variedad", isEqualTo: widget.params.categoryName)
@@ -44,15 +44,15 @@ class _DetailsParamsState extends State<DetailsParams> {
           {
             return ListView.builder(
               itemBuilder: (BuildContext context,int index){
-                var document = data.data.documents[index];
+                var document = data.data.docs[index];
                 
 
                 return Dismissible(
-                  key: Key(document.documentID),
+                  key: Key(document.id),
                   onDismissed: (direction){
-                    Firestore.instance
+                    FirebaseFirestore.instance
                       .collection('Ventas')
-                      .document(document.documentID)
+                      .doc(document.id)
                       .delete();
 
                   },
@@ -91,7 +91,7 @@ class _DetailsParamsState extends State<DetailsParams> {
                   ),
                 );
             },
-              itemCount: data.data.documents.length,
+              itemCount: data.data.docs.length,
             );
           }
 

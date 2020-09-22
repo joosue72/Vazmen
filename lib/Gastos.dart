@@ -161,7 +161,7 @@ bool pendiente;
               width: 15.0,
               child: TextFormField(
       
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.text,
       controller: _textFieldController,
       style: TextStyle(
         color: Colors.white,
