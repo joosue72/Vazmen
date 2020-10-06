@@ -71,10 +71,7 @@ class _VentasState extends State<Ventas> {
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color:Color(0xFF353535)
-                  ),
+                  
                   child: Center(
                     child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: ()
                     {
@@ -98,9 +95,7 @@ class _VentasState extends State<Ventas> {
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7.0),
-                      color: Color(0xFF353535)),
+                  
                   child: Center(
                     child: Icon(Icons.shopping_cart, color: Colors.white),
                   ),
@@ -167,7 +162,7 @@ class _VentasState extends State<Ventas> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.add_shopping_cart, color: Colors.white),
+                    Icon(Icons.add_shopping_cart, color: Color(0xFFB71C1C)),
                     SizedBox(width: 50.0,),
                      StreamBuilder<QuerySnapshot>(
                        
@@ -259,18 +254,18 @@ class _VentasState extends State<Ventas> {
       decoration: InputDecoration(
         
          
-         prefixIcon: Icon(Icons.attach_money, color: Colors.white),
+         prefixIcon: Icon(Icons.attach_money, color: Color(0xFFB71C1C)),
         labelText: "Costo por papa",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -300,18 +295,18 @@ class _VentasState extends State<Ventas> {
       decoration: InputDecoration(
         
          
-        prefixIcon: Icon(Icons.storage, color: Colors.white),
+        prefixIcon: Icon(Icons.storage, color: Color(0xFFB71C1C)),
         labelText: "Cantidad de Papas",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -411,7 +406,7 @@ class _VentasState extends State<Ventas> {
                 ),
               ),
               borderRadius: 5.0,
-              color: Colors.white
+              color: Color(0xFFB71C1C)
             ),
             
           
@@ -430,7 +425,7 @@ class _VentasState extends State<Ventas> {
         ],
       ),
       
-     floatingActionButton: FloatingActionButton(child: Icon(Icons.watch_later), backgroundColor: Color(0xFF202020),
+     floatingActionButton: FloatingActionButton(child: Icon(Icons.watch_later, color: Color(0xFFB71C1C),), backgroundColor: Color(0xFF202020),
      onPressed: (){
         Route route = MaterialPageRoute(builder: (bc) => VentasPendientes());
                                Navigator.of(context).push(route);
@@ -547,7 +542,7 @@ class _VentasState extends State<Ventas> {
                               
                                
   print(total);               
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
     },
   );
 }

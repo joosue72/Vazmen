@@ -109,18 +109,18 @@ class _NuevoProductoState extends State<NuevoProducto> {
       decoration: InputDecoration(
         
          
-        prefixIcon: Icon(Icons.storage, color: Colors.white),
+        prefixIcon: Icon(Icons.storage, color: Color(0xFFB71C1C)),
         labelText: "Variedad",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -147,18 +147,18 @@ class _NuevoProductoState extends State<NuevoProducto> {
       decoration: InputDecoration(
         
          
-         prefixIcon: Icon(Icons.attach_money, color: Colors.white),
+         prefixIcon: Icon(Icons.attach_money, color: Color(0xFFB71C1C)),
         labelText: "Cantidad",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -223,7 +223,7 @@ class _NuevoProductoState extends State<NuevoProducto> {
                 ),
               ),
               borderRadius: 5.0,
-              color: Colors.white
+              color: Color(0xFFB71C1C)
             ),
             
           

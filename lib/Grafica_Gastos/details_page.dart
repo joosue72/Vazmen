@@ -96,7 +96,8 @@ class _DetailsParamsState extends State<DetailsParams> {
                   ),
                 );
             },
-              itemCount: data.data.docs.length,
+              // ignore: deprecated_member_use
+              itemCount: data.data.documents.length,
             );
           }
 

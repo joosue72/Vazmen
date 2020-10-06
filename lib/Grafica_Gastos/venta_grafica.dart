@@ -3,25 +3,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vazmen/Animation/FadeAnimation.dart';
-import '../homepage.dart';
+import '../Ventas.dart';
 import '../menugraficas.dart';
 import 'venta_widget.dart';
 
-class VentaGrafica extends StatefulWidget {
+// ignore: camel_case_types
+class venta_gastos extends StatefulWidget {
  
-  
-   final imgPath, title;
-
-  VentaGrafica({this.imgPath, this.title}); 
   
 
   @override
-  _VentaGraficaState createState() => _VentaGraficaState();
+  _venta_gastosState createState() => _venta_gastosState();
 }
 
-
-class _VentaGraficaState extends State<VentaGrafica> {
-  
+// ignore: camel_case_types
+class _venta_gastosState extends State<venta_gastos> {
 
    PageController _controller;
   int currentPage = DateTime.now().month - 1;
@@ -34,9 +30,10 @@ class _VentaGraficaState extends State<VentaGrafica> {
   void initState() {
     super.initState();
 
-    _query = FirebaseFirestore.instance
+    // ignore: deprecated_member_use
+    _query = Firestore.instance
 
-        .collection('Ventas')
+        .collection('Gastos')
         .where("Mes", isEqualTo: currentPage + 1)
         .snapshots();
 
@@ -94,9 +91,8 @@ backgroundColor: Color(0xFF1B1B1B),
         child: Icon(Icons.add,color: Colors.black,),
         backgroundColor: Colors.white,
         onPressed: () {
-          
-             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomePage()));
+            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Ventas()));
 
           
         },
@@ -149,7 +145,8 @@ backgroundColor: Color(0xFF1B1B1B),
 
                   
                   
-                  documents: data.data.docs,
+                  // ignore: deprecated_member_use
+                  documents: data.data.documents,
                   graphType: currentType,
                   month: currentPage,
                 );
@@ -202,8 +199,9 @@ backgroundColor: Color(0xFF1B1B1B),
         onPageChanged: (newPage) {
           setState(() {
             currentPage = newPage;
-            _query = FirebaseFirestore.instance
-                .collection('Ventas')
+            // ignore: deprecated_member_use
+            _query = Firestore.instance
+                .collection('Gastos')
                 .where("Mes", isEqualTo: currentPage + 1)
                 .snapshots();
           });
@@ -245,7 +243,7 @@ backgroundColor: Color(0xFF1B1B1B),
           );
 
         })),
-        FadeAnimation(1,Text('Lista de Ventas', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,color: Colors.white),)),
+        FadeAnimation(1,Text('Lista de Gastos', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500,color: Colors.white),)),
         FadeAnimation(1,IconButton(icon: Icon(Icons.trending_up,color: Colors.white), onPressed: (){
           Route route = MaterialPageRoute(builder: (bc) => Menug());
                                                 Navigator.of(context).push(route);

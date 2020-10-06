@@ -69,7 +69,7 @@ class ScrollPage extends StatelessWidget {
                   child: Column(
                     
                     children: <Widget>[
-                      SizedBox(height: 60,),
+                      SizedBox(height: 30,),
                       Container(
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
@@ -98,7 +98,7 @@ class ScrollPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 40,),
+                      SizedBox(height: 20,),
 
                    
                       SizedBox(height: 20,),
@@ -173,7 +173,7 @@ Route route = MaterialPageRoute(builder: (bc) => HomePage());
     return Container(
       width: double.infinity,
       height: double.infinity,
-    child: Image(image: AssetImage('assets/1100.png'),
+    child: Image(image: AssetImage('assets/vazmen5.jpg'),
     fit: BoxFit.cover,
     ),
     );

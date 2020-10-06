@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vazmen/Ventas.dart';
 import 'package:vazmen/Gastos.dart';
+
 import 'package:vazmen/detailspage.dart';
 
-import 'Grafica_Ventas/venta_grafica.dart';
+import 'package:vazmen/menugraficas.dart';
+
+
+import 'menugraficas.dart';
 
 
  class DashboardPage extends StatefulWidget {
@@ -99,7 +103,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>  venta_grafica()));
+                              builder: (context) =>  Menug()));
                         },
                         child: Container(
                             height: 50.0,

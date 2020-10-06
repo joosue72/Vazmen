@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:vazmen/VentasPendientes.dart';
 import 'package:vazmen/homepage.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -68,10 +67,7 @@ bool pendiente;
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color:Color(0xFF353535)
-                  ),
+                  
                   child: Center(
                     child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: ()
                     {
@@ -95,9 +91,7 @@ bool pendiente;
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7.0),
-                      color: Color(0xFF353535)),
+                  
                   child: Center(
                     child: Icon(Icons.add_shopping_cart, color: Colors.white),
                   ),
@@ -170,18 +164,18 @@ bool pendiente;
       decoration: InputDecoration(
         
          
-         prefixIcon: Icon(Icons.person_add, color: Colors.white),
+         prefixIcon: Icon(Icons.person_add, color: Color(0xFFB71C1C)),
         labelText: "Nombre del Gasto",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -206,18 +200,18 @@ bool pendiente;
       decoration: InputDecoration(
         
          
-        prefixIcon: Icon(Icons.attach_money, color: Colors.white),
+        prefixIcon: Icon(Icons.attach_money, color: Color(0xFFB71C1C)),
         labelText: "Cantidad del Gasto",
         labelStyle: TextStyle(color: Colors.white) ,
         hoverColor: Color(0xFFB71C1C),
         border: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.white,
+          color: Color(0xFFB71C1C),
           width: 2,
         )),
         enabledBorder: UnderlineInputBorder(
@@ -282,7 +276,7 @@ bool pendiente;
                 ),
               ),
               borderRadius: 5.0,
-              color: Colors.white
+              color: Color(0xFFB71C1C)
             ),
             
           
@@ -301,12 +295,7 @@ bool pendiente;
         ],
       ),
       
-     floatingActionButton: FloatingActionButton(child: Icon(Icons.android), backgroundColor: Color(0xFF202020),
-     onPressed: (){
-        Route route = MaterialPageRoute(builder: (bc) => VentasPendientes());
-                               Navigator.of(context).push(route);
-     },
-     ),
+     
     );
   }
   void correcto()

@@ -25,23 +25,23 @@ class VentaWidget extends StatefulWidget {
  
 
    VentaWidget({Key key,@required this.month, this.graphType,this.documents}) : 
-    total = documents.map((doc) => doc.data()['totalVenta'])
+    total = documents.map((doc) => doc.data()['Cantidad'])
             .fold(0.0, (a, b) => a + b),
      
      
      perDay = List.generate(30, (int index){
        return documents.where((doc) => doc.data()['Dia'] ==(index + 1))
-        .map((doc) => doc.data()['totalVenta'])
+        .map((doc) => doc.data()['Cantidad'])
             .fold(0.0, (a, b) => a + b);
      }),       
 
       categories = documents.fold({}, (Map<String, double> map,document){
 
-        if(!map.containsKey(document.data()['Variedad'])){
-          map[document.data()['Variedad']] = 0.0;
+        if(!map.containsKey(document.data()['Nombre'])){
+          map[document.data()['Nombre']] = 0.0;
         }
 
-        map[document.data()['Variedad']] += document.data()['totalVenta'];
+        map[document.data()['Nombre']] += document.data()['Cantidad'];
         return map;
 
       }),
@@ -124,11 +124,7 @@ class _VentaWidgetState extends State<VentaWidget> {
             fontSize: 30.0
           ),
         ),
-
-        Text("Total de Ventas por Mes"),
-
         Text("Total de Ventas",
-
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16.0,
@@ -140,6 +136,7 @@ class _VentaWidgetState extends State<VentaWidget> {
   }
   
   
+  // ignore: missing_return
   Widget _graph() {
     if (widget.graphType == GraphType.LINES) {
       return Container(
@@ -159,22 +156,17 @@ class _VentaWidgetState extends State<VentaWidget> {
         ),
       );
     }
-    return SizedBox(height: 10.0,);
   }
   
-  Widget _item(IconData icon, String nombre, int percent,double value,){
+  Widget _item(IconData icon, String nombre, int percent,double value){
     return ListTile(
       onTap: (){
 
         
-      // Navigator.pushNamed(context, '/details',
-        //    arguments: DetailsPage1(nombre, widget.month));
-
 
       
       Navigator.of(context).pushNamed('/details',
            arguments: DetailsPage1(nombre, widget.month));
-
       },
 
       leading: Icon(icon, size: 32.0,color: Colors.white,),

@@ -71,10 +71,7 @@ TextEditingController _textFieldCantidad = TextEditingController();
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color:Color(0xFF353535)
-                  ),
+                  
                   child: Center(
                     child: IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.white), onPressed: ()
                     {
@@ -98,9 +95,7 @@ TextEditingController _textFieldCantidad = TextEditingController();
                 Container(
                   height: 40.0,
                   width: 40.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7.0),
-                      color: Color(0xFF353535)),
+                  
                   child: Center(
                     child: Icon(Icons.bookmark_border, color: Colors.white),
                   ),
@@ -188,7 +183,7 @@ TextEditingController _textFieldCantidad = TextEditingController();
         ],
       ),
       
-     floatingActionButton: FloatingActionButton(child: Icon(Icons.add), backgroundColor: Color(0xFF202020),
+     floatingActionButton: FloatingActionButton(child: Icon(Icons.add, color: Color(0xFFB71C1C),), backgroundColor: Color(0xFF202020),
      onPressed: (){
         Route route = MaterialPageRoute(builder: (bc) => NuevoProducto());
                                Navigator.of(context).push(route);
